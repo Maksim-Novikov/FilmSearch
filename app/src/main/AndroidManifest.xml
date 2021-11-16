@@ -10,7 +10,7 @@
       android:supportsRtl="true"
       android:theme="@style/Theme.FilmSearch">
     <activity
-        android:name=".presentation.MainActivity"
+        android:name="com.maxnovikov.filmSearch.presentation.MainActivity"
         android:exported="true">
       <intent-filter>
         <category android:name="android.intent.category.LAUNCHER" />
