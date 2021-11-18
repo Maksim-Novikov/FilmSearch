@@ -17,7 +17,15 @@
       app:layout_constraintBottom_toBottomOf="parent"
       />
 
-
+  <Button
+      android:id="@+id/top_film_show_detail"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Детали"
+      app:layout_constraintBottom_toTopOf="@id/top_film_add_count"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      />
   <Button
       android:id="@+id/top_film_add_count"
       android:layout_width="wrap_content"

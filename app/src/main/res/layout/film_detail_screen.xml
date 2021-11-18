@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <ImageView
+      android:id="@+id/film_detail_back"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="16dp"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      app:srcCompat="@drawable/ic_arrow_back"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
+  <TextView
+      android:id="@+id/film_detail_name"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:textSize="24sp"
+      android:layout_marginHorizontal="10dp"
+      android:textColor="@color/black"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/film_detail_back"
+      tools:text="Властелин колец"
+      />
+
+  <TextView
+      android:id="@+id/film_detail_year"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:textColor="@color/black"
+      android:textSize="18sp"
+      android:layout_marginHorizontal="10dp"
+      app:layout_constraintTop_toBottomOf="@id/film_detail_name"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      tools:text="2004"
+      />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
