@@ -3,6 +3,7 @@ package com.maxnovikov.filmSearch.presentation.filmDetail
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +22,8 @@ class FilmDetailFragment : BaseFragment(R.layout.film_detail_screen) {
     }
 
     private const val FILM_DETAIL_DATA_KEY = "FILM_DETAIL_DATA_KEY"
+    const val FILM_DETAIL_RESULT_KEY = "FILM_DETAIL_RESULT_KEY"
+    const val FILM_DETAIL_RATING_KEY = "FILM_DETAIL_RATING_KEY"
   }
 
   private val viewBiding by viewBinding(FilmDetailScreenBinding::bind)
@@ -47,6 +50,7 @@ class FilmDetailFragment : BaseFragment(R.layout.film_detail_screen) {
 
   private fun closeScreen() {
     parentFragmentManager.popBackStack()
+    setFragmentResult(FILM_DETAIL_RESULT_KEY, bundleOf(FILM_DETAIL_RATING_KEY to 5))
   }
 
 }
