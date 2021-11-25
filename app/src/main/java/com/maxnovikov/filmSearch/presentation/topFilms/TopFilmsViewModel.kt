@@ -7,17 +7,18 @@ import androidx.lifecycle.viewModelScope
 import com.maxnovikov.filmSearch.domain.FilmRepository
 import com.maxnovikov.filmSearch.domain.entity.Film
 import com.maxnovikov.filmSearch.domain.entity.TopType.TOP_AWAIT_FILMS
+import com.maxnovikov.filmSearch.presentation.common.SingleLiveEvent
 import com.maxnovikov.filmSearch.presentation.common.launchWithErrorHandler
 
 class TopFilmsViewModel(
   private val filmRepository: FilmRepository
 ) : ViewModel() {
 
-  private val _countState = MutableLiveData(0)
-  val countState: LiveData<Int> = _countState
-
   private val _filmsState = MutableLiveData<List<Film>>()
   val filmState: LiveData<List<Film>> = _filmsState
+
+  private val _openDetailAction = SingleLiveEvent<Film>()
+  val openDetailAction: LiveData<Film> = _openDetailAction
 
   init {
     viewModelScope.launchWithErrorHandler {
@@ -26,7 +27,7 @@ class TopFilmsViewModel(
     }
   }
 
-  fun onAdd() {
-    _countState.value = _countState.value!! + 1
+  fun onFilmClicked(film: Film) {
+    _openDetailAction.value = film
   }
 }

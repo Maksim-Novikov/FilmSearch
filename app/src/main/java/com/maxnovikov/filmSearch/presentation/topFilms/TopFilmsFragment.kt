@@ -8,6 +8,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.maxnovikov.filmSearch.di.NetworkModule
 import com.maxnovikov.filmSearch.domain.entity.Film
@@ -44,17 +45,17 @@ class TopFilmsFragment : BaseFragment(R.layout.top_films_screen) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewBinding.topFilmAddCount.setOnClickListener {
-      viewModel.onAdd()
-    }
-    viewModel.countState.observe(viewLifecycleOwner) { count ->
-      viewBinding.topFilmCount.text = count.toString()
+
+    val topFilmsAdapter = TopFilmsAdapter(viewModel::onFilmClicked)
+    with(viewBinding.topFilmList) {
+      adapter = topFilmsAdapter
+      layoutManager = LinearLayoutManager(context)
     }
     viewModel.filmState.observe(viewLifecycleOwner) {
-      viewBinding.topFilmCount.text = it.joinToString()
+      topFilmsAdapter.submitList(it)
     }
-    viewBinding.topFilmShowDetail.setOnClickListener {
-      openDetail(Film("Джентельмены", 2020))
+    viewModel.openDetailAction.observe(viewLifecycleOwner) {
+      openDetail(it)
     }
   }
 

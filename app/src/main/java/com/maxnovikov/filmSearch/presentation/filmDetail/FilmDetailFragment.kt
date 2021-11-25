@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.maxnovikov.filmSearch.domain.entity.Film
 import com.maxnovikov.filmSearch.presentation.common.BaseFragment
+import com.maxnovikov.filmSearch.presentation.common.setImageUrl
 import com.maxnovikov.filmsearch.R
 import com.maxnovikov.filmsearch.databinding.FilmDetailScreenBinding
 
@@ -39,6 +40,7 @@ class FilmDetailFragment : BaseFragment(R.layout.film_detail_screen) {
     viewModel.filmState.observe(viewLifecycleOwner) { film ->
       viewBiding.filmDetailYear.text = film.year.toString()
       viewBiding.filmDetailName.text = film.name
+      viewBiding.filmDetailPoster.setImageUrl(film.posterUrl)
     }
     viewModel.backAction.observe(viewLifecycleOwner) {
       closeScreen()
