@@ -13,7 +13,10 @@ import com.maxnovikov.filmSearch.presentation.common.BaseFragment
 import com.maxnovikov.filmSearch.presentation.common.setImageUrl
 import com.maxnovikov.filmsearch.R
 import com.maxnovikov.filmsearch.databinding.FilmDetailScreenBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FilmDetailFragment : BaseFragment(R.layout.film_detail_screen) {
 
   companion object {
@@ -27,11 +30,14 @@ class FilmDetailFragment : BaseFragment(R.layout.film_detail_screen) {
     const val FILM_DETAIL_RATING_KEY = "FILM_DETAIL_RATING_KEY"
   }
 
+  @Inject
+  lateinit var filmDetailViewModelFactory: FilmDetailViewModel.Factory
+
   private val viewBiding by viewBinding(FilmDetailScreenBinding::bind)
   private val viewModel by viewModels<FilmDetailViewModel> {
     object : ViewModelProvider.Factory {
       override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-        FilmDetailViewModel(arguments?.getParcelable(FILM_DETAIL_DATA_KEY)!!) as T
+        filmDetailViewModelFactory.create(arguments?.getParcelable(FILM_DETAIL_DATA_KEY)!!) as T
     }
   }
 
@@ -56,4 +62,3 @@ class FilmDetailFragment : BaseFragment(R.layout.film_detail_screen) {
   }
 
 }
-

@@ -9,8 +9,10 @@ import com.maxnovikov.filmSearch.domain.entity.Film
 import com.maxnovikov.filmSearch.domain.entity.TopType.TOP_AWAIT_FILMS
 import com.maxnovikov.filmSearch.presentation.common.SingleLiveEvent
 import com.maxnovikov.filmSearch.presentation.common.launchWithErrorHandler
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class TopFilmsViewModel @Inject constructor(
   private val filmRepository: FilmRepository
 ) : ViewModel() {

@@ -4,7 +4,9 @@ import android.os.Bundle
 import com.maxnovikov.filmSearch.presentation.common.BaseActivity
 import com.maxnovikov.filmSearch.presentation.topFilms.TopFilmsFragment
 import com.maxnovikov.filmsearch.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {

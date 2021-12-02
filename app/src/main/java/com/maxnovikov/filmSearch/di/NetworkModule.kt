@@ -4,30 +4,35 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.maxnovikov.filmSearch.data.network.FilmApi
 import com.maxnovikov.filmSearch.data.network.FilmRepositoryImpl
 import com.maxnovikov.filmSearch.domain.FilmRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.migration.DisableInstallInCheck
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import retrofit2.create
 
 @Module
-@DisableInstallInCheck
-class NetworkModule {
+@InstallIn(SingletonComponent::class)
+abstract class NetworkModule {
 
-  @Provides
-  fun provideFilmApi(): FilmApi = Retrofit.Builder()
-    .baseUrl("https://kinopoiskapiunofficial.tech")
-    .addConverterFactory(
-      Json(builderAction = {
-        isLenient = true
-        ignoreUnknownKeys = true
-      }).asConverterFactory("application/json".toMediaType())
-    )
-    .build()
-    .create()
+  companion object {
 
-  @Provides
-  fun getRepository(filmApi: FilmApi): FilmRepository = FilmRepositoryImpl(filmApi)
+    @Provides
+    fun provideFilmApi(): FilmApi = Retrofit.Builder()
+      .baseUrl("https://kinopoiskapiunofficial.tech")
+      .addConverterFactory(
+        Json(builderAction = {
+          isLenient = true
+          ignoreUnknownKeys = true
+        }).asConverterFactory("application/json".toMediaType())
+      )
+      .build()
+      .create()
+  }
+
+  @Binds
+  abstract fun getRepository(filmRepositoryImpl: FilmRepositoryImpl): FilmRepository
 }
