@@ -1,4 +1,5 @@
 <resources>
   <string name="app_name">FilmSearch</string>
   <string name="item_film_rating_pattern">Рейтинг ожидания: %1$s</string>
+  <string name="top_film_error_text">Во время запроса произошла ошибка</string>
 </resources>

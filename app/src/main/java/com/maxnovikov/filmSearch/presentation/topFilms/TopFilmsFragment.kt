@@ -3,16 +3,21 @@ package com.maxnovikov.filmSearch.presentation.topFilms
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.commit
+import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.maxnovikov.filmSearch.domain.entity.Film
 import com.maxnovikov.filmSearch.presentation.common.BaseFragment
+import com.maxnovikov.filmSearch.presentation.common.navigate
 import com.maxnovikov.filmSearch.presentation.filmDetail.FilmDetailFragment
 import com.maxnovikov.filmSearch.presentation.filmDetail.FilmDetailFragment.Companion.FILM_DETAIL_RATING_KEY
 import com.maxnovikov.filmSearch.presentation.filmDetail.FilmDetailFragment.Companion.FILM_DETAIL_RESULT_KEY
+import com.maxnovikov.filmSearch.presentation.search.SearchFragment
+import com.maxnovikov.filmSearch.presentation.topFilms.TopFilmsState.Error
+import com.maxnovikov.filmSearch.presentation.topFilms.TopFilmsState.Loading
+import com.maxnovikov.filmSearch.presentation.topFilms.TopFilmsState.Success
 import com.maxnovikov.filmsearch.R
 import com.maxnovikov.filmsearch.databinding.TopFilmsScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,8 +50,25 @@ class TopFilmsFragment : BaseFragment(R.layout.top_films_screen) {
       adapter = topFilmsAdapter
       layoutManager = LinearLayoutManager(context)
     }
-    viewModel.filmState.observe(viewLifecycleOwner) {
-      topFilmsAdapter.submitList(it)
+    viewModel.screenState.observe(viewLifecycleOwner) { state: TopFilmsState ->
+      when (state) {
+        is Error -> {
+          viewBinding.topFilmError.isVisible = true
+          viewBinding.topFilmProgress.isVisible = false
+          viewBinding.topFilmList.isVisible = false
+        }
+        is Loading -> {
+          viewBinding.topFilmError.isVisible = false
+          viewBinding.topFilmProgress.isVisible = true
+          viewBinding.topFilmList.isVisible = false
+        }
+        is Success -> {
+          viewBinding.topFilmError.isVisible = false
+          viewBinding.topFilmProgress.isVisible = false
+          viewBinding.topFilmList.isVisible = true
+          topFilmsAdapter.submitList(state.films)
+        }
+      }
     }
     viewModel.openDetailAction.observe(viewLifecycleOwner) {
       openDetail(it)
@@ -54,10 +76,11 @@ class TopFilmsFragment : BaseFragment(R.layout.top_films_screen) {
   }
 
   private fun openDetail(film: Film) {
-    parentFragmentManager.commit(allowStateLoss = true) {
-      replace(R.id.main_activity_container, FilmDetailFragment.newInstance(film))
-      addToBackStack(null)
-    }
+    parentFragmentManager.navigate(FilmDetailFragment.newInstance(film))
+  }
+
+  private fun openSearch() {
+    parentFragmentManager.navigate(SearchFragment())
   }
 }
 
