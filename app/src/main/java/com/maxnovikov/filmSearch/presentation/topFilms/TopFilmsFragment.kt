@@ -73,6 +73,9 @@ class TopFilmsFragment : BaseFragment(R.layout.top_films_screen) {
     viewModel.openDetailAction.observe(viewLifecycleOwner) {
       openDetail(it)
     }
+    viewBinding.topFilmSearch.setOnClickListener {
+      openSearch()
+    }
   }
 
   private fun openDetail(film: Film) {

@@ -17,7 +17,7 @@ class FilmRepositoryImpl @Inject constructor(
       .toFilms()
   }
 
-  suspend fun search(yearFrom: Int?, yearTo: Int?): List<Film> {
+  override suspend fun search(yearFrom: Int?, yearTo: Int?): List<Film> {
     return filmApi.search(yearFrom, yearTo)
       .toFilms()
   }

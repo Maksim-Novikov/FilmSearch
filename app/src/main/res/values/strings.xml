@@ -2,4 +2,7 @@
   <string name="app_name">FilmSearch</string>
   <string name="item_film_rating_pattern">Рейтинг ожидания: %1$s</string>
   <string name="top_film_error_text">Во время запроса произошла ошибка</string>
+  <string name="search_from_hint">Год от</string>
+  <string name="search_to_hint">Год до</string>
+  <string name="search_submit">Поиск</string>
 </resources>

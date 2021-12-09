@@ -2,6 +2,77 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+
+  <ScrollView
+      android:id="@+id/search_scroll"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/search_year_from_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/search_from_hint"
+          app:placeholderText="1800"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_year_from_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="4"
+            />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/search_year_to_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:hint="@string/search_to_hint"
+          app:placeholderText="2030"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_year_to_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            android:maxLength="4"
+            />
+      </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+  </ScrollView>
+
+
+  <Button
+      android:id="@+id/search_submit"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/search_submit"
+      android:layout_marginHorizontal="16dp"
+      android:layout_marginBottom="16dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      />
+
+  <ProgressBar
+      android:id="@+id/search_progress"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      app:layout_constraintBottom_toBottomOf="@id/search_submit"
+      app:layout_constraintEnd_toEndOf="@+id/search_submit"
+      app:layout_constraintTop_toTopOf="@+id/search_submit"
+      />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

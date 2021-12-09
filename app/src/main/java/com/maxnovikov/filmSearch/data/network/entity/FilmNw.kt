@@ -6,25 +6,25 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class FilmNw(
   @SerialName("countries")
-  val countries: List<Country>?,
+  val countries: List<Country>? = null,
   @SerialName("filmId")
-  val filmId: Int?,
+  val filmId: Int? = null,
   @SerialName("filmLength")
-  val filmLength: String?,
+  val filmLength: String? = null,
   @SerialName("genres")
-  val genres: List<Genre>?,
+  val genres: List<Genre>? = null,
   @SerialName("nameEn")
-  val nameEn: String?,
+  val nameEn: String? = null,
   @SerialName("nameRu")
-  val nameRu: String?,
+  val nameRu: String? = null,
   @SerialName("posterUrl")
-  val posterUrl: String?,
+  val posterUrl: String? = null,
   @SerialName("posterUrlPreview")
-  val posterUrlPreview: String?,
+  val posterUrlPreview: String? = null,
   @SerialName("rating")
-  val rating: String?,
+  val rating: String? = null,
   @SerialName("ratingVoteCount")
-  val ratingVoteCount: Int?,
+  val ratingVoteCount: Int? = null,
   @SerialName("year")
-  val year: String?
+  val year: String? = null
 )
