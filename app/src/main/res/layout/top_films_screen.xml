@@ -33,6 +33,15 @@
       app:srcCompat="@drawable/ic_search_24"
       />
 
+  <ImageView
+      android:id="@+id/top_film_city"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="16dp"
+      app:layout_constraintEnd_toStartOf="@+id/top_film_search"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/ic_location_city"
+      />
   <TextView
       android:id="@+id/top_film_error"
       android:layout_width="wrap_content"

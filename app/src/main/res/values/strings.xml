@@ -5,4 +5,5 @@
   <string name="search_from_hint">Год от</string>
   <string name="search_to_hint">Год до</string>
   <string name="search_submit">Поиск</string>
+  <string name="city_request_geo">Запрасить местоположение</string>
 </resources>

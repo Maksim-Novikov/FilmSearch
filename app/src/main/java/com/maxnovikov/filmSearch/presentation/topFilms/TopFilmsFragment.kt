@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.maxnovikov.filmSearch.domain.entity.Film
+import com.maxnovikov.filmSearch.presentation.city.CityFragment
 import com.maxnovikov.filmSearch.presentation.common.BaseFragment
 import com.maxnovikov.filmSearch.presentation.common.navigate
 import com.maxnovikov.filmSearch.presentation.filmDetail.FilmDetailFragment
@@ -76,6 +77,9 @@ class TopFilmsFragment : BaseFragment(R.layout.top_films_screen) {
     viewBinding.topFilmSearch.setOnClickListener {
       openSearch()
     }
+    viewBinding.topFilmCity.setOnClickListener {
+      openCity()
+    }
   }
 
   private fun openDetail(film: Film) {
@@ -84,6 +88,10 @@ class TopFilmsFragment : BaseFragment(R.layout.top_films_screen) {
 
   private fun openSearch() {
     parentFragmentManager.navigate(SearchFragment())
+  }
+
+  private fun openCity() {
+    parentFragmentManager.navigate(CityFragment())
   }
 }
 
