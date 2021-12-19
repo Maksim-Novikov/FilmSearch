@@ -51,5 +51,15 @@
       tools:text="2004"
       />
 
+  <ImageView
+      android:id="@+id/film_detail_favorites"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="16dp"
+      app:srcCompat="@drawable/ic_in_favorite"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

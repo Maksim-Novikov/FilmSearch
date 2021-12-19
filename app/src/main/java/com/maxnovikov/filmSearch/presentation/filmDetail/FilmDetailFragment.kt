@@ -54,6 +54,12 @@ class FilmDetailFragment : BaseFragment(R.layout.film_detail_screen) {
     viewBiding.filmDetailBack.setOnClickListener {
       viewModel.onBackPressed()
     }
+    viewBiding.filmDetailFavorites.setOnClickListener {
+      viewModel.onFavoritesClick()
+    }
+    viewModel.favoritesState.observe(viewLifecycleOwner) {
+      viewBiding.filmDetailFavorites.setImageResource(if (it) R.drawable.ic_in_favorite else R.drawable.ic_not_in_favorite)
+    }
   }
 
   private fun closeScreen() {

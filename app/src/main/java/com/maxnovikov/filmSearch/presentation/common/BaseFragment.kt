@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 
@@ -32,6 +34,38 @@ abstract class BaseFragment(
   ): View? {
     Log.d(logTag, "onCreateView")
     return super.onCreateView(inflater, container, savedInstanceState)
+  }
+
+  fun ignoreNextAnimation() {
+    ignoreAnimationCount = 2
+  }
+
+  private var ignoreAnimationCount = 0
+  override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+    Log.d(logTag, "onCreateAnimation")
+    return if (ignoreAnimationCount > 0) {
+      ignoreAnimationCount--
+      if (ignoreAnimationCount == 1) {
+        AlphaAnimation(1f, 0f).apply { duration = 300 }
+      } else {
+        AlphaAnimation(0f, 1f).apply { duration = 300 }
+      }
+    } else {
+      super.onCreateAnimation(transit, enter, nextAnim)
+    }
+  }
+
+  private val key = "Count"
+  override fun onSaveInstanceState(outState: Bundle) {
+    outState.putInt(key, ignoreAnimationCount--)
+    super.onSaveInstanceState(outState)
+  }
+
+  override fun onViewStateRestored(savedInstanceState: Bundle?) {
+    super.onViewStateRestored(savedInstanceState)
+    savedInstanceState?.getInt(key)?.let {
+      ignoreAnimationCount = it
+    }
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

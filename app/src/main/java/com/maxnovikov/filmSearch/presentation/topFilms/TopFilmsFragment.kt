@@ -83,15 +83,15 @@ class TopFilmsFragment : BaseFragment(R.layout.top_films_screen) {
   }
 
   private fun openDetail(film: Film) {
-    parentFragmentManager.navigate(FilmDetailFragment.newInstance(film))
+    navigate(FilmDetailFragment.newInstance(film))
   }
 
   private fun openSearch() {
-    parentFragmentManager.navigate(SearchFragment())
+    navigate(SearchFragment())
   }
 
   private fun openCity() {
-    parentFragmentManager.navigate(CityFragment())
+    navigate(CityFragment())
   }
 }
 
