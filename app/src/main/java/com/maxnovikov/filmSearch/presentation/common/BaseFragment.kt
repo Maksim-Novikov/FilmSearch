@@ -57,7 +57,7 @@ abstract class BaseFragment(
 
   private val key = "Count"
   override fun onSaveInstanceState(outState: Bundle) {
-    outState.putInt(key, ignoreAnimationCount--)
+    outState.putInt(key, ignoreAnimationCount - 1)
     super.onSaveInstanceState(outState)
   }
 
