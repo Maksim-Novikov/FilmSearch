@@ -51,7 +51,7 @@ class TopFilmsFragment : BaseFragment(R.layout.top_films_screen) {
       adapter = topFilmsAdapter
       layoutManager = LinearLayoutManager(context)
     }
-    viewModel.screenState.observe(viewLifecycleOwner) { state: TopFilmsState ->
+    viewModel.screenState.observe(viewLifecycleOwner) { state: TopFilmsState? ->
       when (state) {
         is Error -> {
           viewBinding.topFilmError.isVisible = true
